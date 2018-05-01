@@ -10,17 +10,44 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
      <script type="text/babel">
        class Greeting extends React.Component {
+         constructor(props){
+           super(props);
+           this.state = {
+             season: 'spring'
+           }
+         }
           render() {
             return (
               <div>
-                <h1>Hello World!</h1>
+                <h1>Planet: {this.props.name} </h1>
+                <img src={this.props.image} alt="Earth from space" />
+                <h3>Status: {this.props.label} </h3>
+                <p>Diameter: {this.props.diameter} </p>
+                <p>Color: {this.props.color}</p>
+                <p>Current Season: {this.state.season}</p>
               </div>
             );
           }
         }
 
+        const homePlanet = {
+          name: 'Earth',
+          diameter: '12,742 km',
+          color: 'blue',
+          image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-0.3.5&s=95ce75e9d08a87493ed54df5c353542d&auto=format&fit=crop&w=1352&q=80',
+        }
+
+        Greeting.defaultProps = {
+          label: 'Home Planet'
+        }
+
         ReactDOM.render(
-          <Greeting />, document.getElementById('app')
+          <Greeting
+          name={homePlanet.name}
+          diameter={homePlanet.diameter}
+          image={homePlanet.image}
+          color={homePlanet.color}
+          />, document.getElementById('app')
         );
      </script>
   </body>
